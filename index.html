@@ -56,8 +56,20 @@
 
    <div class="row" style="background:#00897b; color:#fff; padding:10px;">
      <div class="container">
+        <h2>Objects</h2><hr>
        <h2 id="employee"></h2><br>
        <h4 id="car"></h4>
+       <br>
+       <h3 id="house"></h3>
+     </div>
+
+   </div>
+
+   <div class="row" style="background:#827717; color:#fff; padding:18px; margin-top:10px;">
+     <div class="container">
+        <h2>Prototype</h2><hr>
+       <h2 id="Laptop"></h2><br>
+
      </div>
 
    </div>
@@ -125,6 +137,34 @@
           return "A " + this.model + " car very " + this.price + " capacity "+this.capacity;
         }
         document.getElementById("car").innerHTML=car.details();
+
+/*Prototype object*/
+       function house(){
+
+       }
+       house.prototype.location = "Nairobi",
+       house.prototype.rooms = "126",
+       house.prototype.color = "Blue",
+       house.prototype.houseDetails = function(){
+         document.getElementById('house').innerHTML ="A house located at: "+this.location+" with " +this.rooms+" Rooms painted "+ this.color;
+       }
+
+       var house1 = new house();
+       house1.houseDetails();
+
+/*Prototypes*/
+
+function laptop(name, price, storage, speed) {
+    this.name = name;
+    this.price = price;
+    this.storage = storage;
+    this.speed = speed;
+}
+
+var myLpatop = new laptop("Toshiba", "Ksh. 50,000", "500 GB", "2.7GhZ");
+document.getElementById('Laptop').innerHTML = "My laptop is "+ myLpatop.name +" Price: "+myLpatop.price +" with storage capacity of "+myLpatop.storage +" with a speed of "+myLpatop.speed;
+
+
     </script>
   </body>
 </html>
