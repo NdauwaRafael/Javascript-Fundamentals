@@ -11,6 +11,7 @@
     <div class="row">
       <div class="container">
         <h2>Functions</h2><hr>
+        <p>Add two values to culculate</p>
         <form>
           <div class="row">
             <div class="col">
@@ -24,16 +25,42 @@
             </div>
           </div>
         </form>
+        <br>
       <p>The result for Multiplying two numbers is: <strong id="answer"></strong> </p>
       <p>The result for Adding <strong>123</strong> and <strong>500</strong>  two numbers is: <strong id="addition"></strong> </p>
       </div>
     </div>
+    <br>
+
+    <div class="row" style="background: #eeeeee;">
+      <div class="container">
+        <h2>Closures</h2><hr>
+        <p>Add two values to culculate</p>
+        <form>
+          <div class="row">
+            <div class="col">
+              <input type="number" class="form-control" id="val1" placeholder="First number">
+            </div>
+            <div class="col">
+              <input type="number" class="form-control" id="val2" placeholder="Last number">
+            </div>
+            <div class="col">
+              <button type="button" onclick="add_devide()" class="btn btn-dark">Calculate</button>
+            </div>
+          </div>
+        </form>
+        <p>The result for adding two numbers is: <strong id="answer2"></strong> </p>
+        <p>The result for Deviding two numbers is: <strong id="answer1"></strong> </p>
+      </div>
+   </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="assets/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
     <script>
-
+/*----------------------------
+  Function statement
+-------------------------------*/
        function add() {
          var num1 = document.getElementById('num1').value;
          var num2 =document.getElementById('num2').value;
@@ -41,12 +68,30 @@
            document.getElementById('answer').innerHTML = answer;
         }
 
+        /*----------------------------
+          Function expression
+        -------------------------------*/
         var addition = function(num1, num2){
           return num1 + num2;
         }
         document.getElementById('addition').innerHTML = addition(123, 500);
 
+        /*----------------------------
+          Closures
+        -------------------------------*/
+        function add_devide() {
+          var val1 = document.getElementById('val1').value;
+          var val2 =document.getElementById('val2').value;
+            var answer1 = +val1 + +val2;
+            document.getElementById('answer2').innerHTML = answer1;
 
+            function devide() {
+              var dev = val1/val2;
+              document.getElementById('answer1').innerHTML = dev;
+            }
+             devide();
+
+         }
     </script>
   </body>
 </html>
