@@ -53,6 +53,14 @@
         <p>The result for Deviding two numbers is: <strong id="answer1"></strong> </p>
       </div>
    </div>
+
+   <div class="row" style="background:#00897b; color:#fff; padding:10px;">
+     <div class="container">
+       <h2 id="employee"></h2><br>
+       <h4 id="car"></h4>
+     </div>
+
+   </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="assets/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
@@ -92,6 +100,31 @@
              devide();
 
          }
+
+         /*----------------------------
+           OBJECTS
+         -------------------------------*/
+/*lITERALS*/
+         var employee = {
+           firstName: "John",
+           lastName: "Doe",
+           employeeNumber: "JJD123",
+           department: "Collection",
+           employeeDetails: function(){
+             return this.firstName +" "+this.lastName + " employee Number: "+ this.employeeNumber +" from Department: "+this.department;
+           }
+         }
+         document.getElementById("employee").innerHTML=employee.employeeDetails();
+
+/*Constructor*/
+        var car = new Object();
+        car.model = "Volvo",
+        car.price = "Expensive",
+        car.capacity = "large"
+        car.details = function () {
+          return "A " + this.model + " car very " + this.price + " capacity "+this.capacity;
+        }
+        document.getElementById("car").innerHTML=car.details();
     </script>
   </body>
 </html>
