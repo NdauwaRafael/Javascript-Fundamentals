@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Javascript | Fundamentals</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
+
+  </head>
+  <body>
+    <div class="row">
+      <div class="container">
+        <h1>Javascrip events</h1><hr>
+        <div class="row">
+          <div class="col-sm">
+            <div class="card" >
+              <img class="card-img-top" onmouseover="m_over_img()" onmouseout="restore_img()" id="img1" src="assets/img/img1.jpg" alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">onMouseover and onMouseout functions.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <div class="card" >
+              <img class="card-img-top" id="img2" src="assets/img/img3.jpg" alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">On Click Function</p>
+                <button id="btn_img" onclick="change_img()" class="btn btn-primary">Click to Change</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            <div class="card" >
+              <img class="card-img-top" id="img3"  src="assets/img/img2.jpg" alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">
+                </p>
+                  <label for="exampleFormControlSelect1">Select an Image</label>
+                  <select class="form-control" id="cars" onchange="select_image()">
+                    <option value="">------Select an Image-------</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Convertible">Convertible</option>
+                    <option value="Tesla">Tesla</option>
+                  </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="assets/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script>
+    /*==========================================================
+        ONCLICK FUNCTION IN CHANGE IMAGE BUTTON (2ND IMAGE)
+    ========================================================*/
+      function change_img(){
+        document.getElementById('img2').setAttribute("src", "assets/img/bm.jpg");
+      }
+
+      /*==============================================================
+          ONCHANGE FUNCTION IN CHANGE IMAGE SELECT (3ND IMAGE)
+      =================================================================*/
+      function select_image(){
+       var val1 = document.getElementById('cars').value;
+
+       if (val1=='BMW') {
+         document.getElementById('img3').setAttribute("src", "assets/img/bm.jpg");
+       }else if (val1=='Convertible') {
+         document.getElementById('img3').setAttribute("src", "assets/img/cv.jpg");
+       } else if (val1=='Tesla') {
+         document.getElementById('img3').setAttribute("src", "assets/img/ts.jpg");
+       }else {
+         document.getElementById('img3').setAttribute("src", "assets/img/img2.jpg");
+       }
+
+      }
+
+      /*======================================================================
+          ONMOUSEOVER AND ONMOUSEOUT FUNCTION IN CHANGE IMAGE HOVER (1ST IMAGE)
+      =========================================================================*/
+      function m_over_img() {
+        document.getElementById('img1').setAttribute("src", "assets/img/mo.jpg");
+      }
+
+      function restore_img(){
+      document.getElementById('img1').setAttribute("src", "assets/img/img1.jpg");
+      }
+
+
+
+    </script>
+
+  </body>
+</html>
