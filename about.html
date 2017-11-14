@@ -49,6 +49,21 @@
           </div>
 
         </div>
+
+        <div class="row">
+          <div class="card" >
+            <form>
+              <div class="form-group">
+                <label >Your Age</label>
+                <input type="text" class="form-control" id="age"  placeholder="Select Your age now">
+              </div>
+
+              <button type="button" onclick="calculate()" class="btn btn-primary">Check Eligibility</button>
+            </form>
+
+              <div id="msg_custom"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -91,6 +106,62 @@
       function restore_img(){
       document.getElementById('img1').setAttribute("src", "assets/img/img1.jpg");
       }
+
+      /*======================================================================
+          CUSTOM EVENT
+      =========================================================================*/
+      // var msg= new Event("post_msg",{
+      //   myMessg: {
+      //     body: "Hallo I am A Nice Custom Event"
+      //   }
+      // });
+      //
+      // var msg_div = document.getElementById('msg_custom');
+      // msg_div.dispatchEvent(msg);
+      // msg_div.addEventListener("msg", greeting, false);
+      //
+      // function greeting(e){
+      //   logEvent (
+      //     e.myMessg.body
+      //   );
+      //
+      // }
+
+      /*======================================================================
+          Promises
+      =========================================================================*/
+      function calculate() {
+        var age = document.getElementById('age').value;
+        var msg_custom = document.getElementById('msg_custom');
+
+        // Promise
+        var isEligible = new Promise(
+            function (resolve, reject) {
+                if (age>18 && age<45) {
+                    var msg= {
+                        body: 'You are eligible'
+                    };
+                    resolve(msg);
+                } else {
+                    var reason = 'Sorry you are not eligible!! Sorry but you age limits you';
+                    reject(reason);
+                }
+
+            }
+        );
+
+        isEligible.then((fulfill)=>{
+           console.log(fulfill);
+           msg_custom.innerHTML=fulfill.body;
+        }, (error)=>
+        {
+          console.log(error);
+          msg_custom.innerHTML=error;
+        });
+      }
+
+
+
 
 
 
