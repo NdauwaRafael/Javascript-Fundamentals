@@ -51,7 +51,8 @@
         </div>
 
         <div class="row">
-          <div class="card" >
+          <div class="col-sm">
+          <div class="card" style="padding:20px;" >
             <form>
               <div class="form-group">
                 <label >Your Age</label>
@@ -60,10 +61,12 @@
 
               <button type="button" onclick="calculate()" class="btn btn-primary">Check Eligibility</button>
             </form>
-
+            <br>
               <div id="msg_custom"></div>
+              <hr>
+              <div id="msg_dynamic"></div>
           </div>
-        </div>
+
       </div>
     </div>
 
@@ -130,9 +133,12 @@
       /*======================================================================
           Promises
       =========================================================================*/
+      var dyn_msg = "This is a dynamic msg";
+      document.getElementById('msg_dynamic').innerHTML= dyn_msg;
       function calculate() {
         var age = document.getElementById('age').value;
         var msg_custom = document.getElementById('msg_custom');
+
 
         // Promise
         var isEligible = new Promise(
@@ -158,6 +164,8 @@
           console.log(error);
           msg_custom.innerHTML=error;
         });
+         dyn_msg = 23;
+        document.getElementById('msg_dynamic').innerHTML=" 23 x your age is:  " +  age * dyn_msg ;
       }
 
 
