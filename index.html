@@ -78,6 +78,11 @@
     <script src="assets/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
     <script>
+/*----------------------------------
+   STRICT MODE
+----------------------------------*/
+    "use strict";
+
 /*----------------------------
   Function statement
 -------------------------------*/
@@ -154,15 +159,15 @@
 
 /*Prototypes*/
 
-function laptop(name, price, storage, speed) {
-    this.name = name;
-    this.price = price;
-    this.storage = storage;
-    this.speed = speed;
-}
+      function laptop(name, price, storage, speed) {
+          this.name = name;
+          this.price = price;
+          this.storage = storage;
+          this.speed = speed;
+      }
 
-var myLpatop = new laptop("Toshiba", "Ksh. 50,000", "500 GB", "2.7GhZ");
-document.getElementById('Laptop').innerHTML = "My laptop is "+ myLpatop.name +" Price: "+myLpatop.price +" with storage capacity of "+myLpatop.storage +" with a speed of "+myLpatop.speed;
+      var myLpatop = new laptop("Toshiba", "Ksh. 50,000", "500 GB", "2.7GhZ");
+      document.getElementById('Laptop').innerHTML = "My laptop is "+ myLpatop.name +" Price: "+myLpatop.price +" with storage capacity of "+myLpatop.storage +" with a speed of "+myLpatop.speed;
 
 
     </script>
