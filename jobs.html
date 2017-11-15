@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Javascript | Fundamentals</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
+  </head>
+  <body>
+    <div class="row">
+      <div class="container">
+        <h1>Fill in the following form to check available job slots</h1><hr>
+        <div class="row">
+          <div class="col-sm">
+              <form>
+                <div class="form-group">
+                  <label >Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter Full Name">
+                </div>
+
+                <div class="form-group">
+                  <label >Id Number</label>
+                  <input type="number" class="form-control" id="idno"  placeholder="Enter Id Number">
+                </div>
+
+                <div class="form-group">
+                  <label >Location</label>
+                  <input type="text" class="form-control" id="location" placeholder="Enter Location">
+                </div>
+
+                <div class="form-group">
+                  <label >Example Category</label>
+                  <select class="form-control" id="category">
+                    <option value="">---Select job Category------</option>
+                    <option value="Business">Business</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Others">Others</option>
+                  </select>
+                </div>
+
+                <button type="button" onclick="getJob()" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+
+        <div class="col-sm">
+          <h7 id="status"></h7>
+          <div id="job_header"></div>
+          <div id="job_details">  </div>
+        </div>
+        </div>
+
+        <div id="your_details_full">
+
+        </div>
+      </div>
+    </div>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+      <script src="assets/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+      <script>
+        function getJob(){
+          let name = document.getElementById('name').value;
+          let id = document.getElementById('idno').value;
+          let lc = document.getElementById('location').value;
+          let cat = document.getElementById('category').value;
+
+          let qualified = {
+            status: 'qualified',
+            reason: 'meets age requirements'
+          }
+
+          const finance = `
+                          <ul class="list-group">
+                            <li class="list-group-item">Financial analyst.</li>
+                            <li class="list-group-item">Trader.</li>
+                            <li class="list-group-item">Regulatory compliance officer.</li>
+                            <li class="list-group-item">Quantitative analyst.</li>
+                            <li class="list-group-item">Marketing manager.</li>
+                            <li class="list-group-item">Portfolio manager.</li>
+                          </ul>`;
+
+          const Engineering = `
+                          <ul class="list-group">
+                            <li class="list-group-item">Associates in Engineering.</li>
+                            <li class="list-group-item">Computer Engineering.</li>
+                            <li class="list-group-item">Electrical Engineering.</li>
+                            <li class="list-group-item">Marine Engineer.</li>
+                            <li class="list-group-item">Mechanical Engineering.</li>
+                            <li class="list-group-item">Biomedical Engineering.</li>
+                            <li class="list-group-item">Civil Engineering.</li>
+                          </ul>`;
+
+          const tech = `
+                          <ul class="list-group">
+                            <li class="list-group-item">Network Engineer.</li>
+                            <li class="list-group-item">Network Administrator.</li>
+                            <li class="list-group-item">Computer Scientist.</li>
+                            <li class="list-group-item">Systems Analyst.</li>
+                            <li class="list-group-item">Business Analyst</li>
+                            <li class="list-group-item">Tech Support.</li>
+                            <li class="list-group-item">IT Consultant.</li>
+                          </ul>`;
+
+
+          if (name==''||id==''||lc==''||cat==''||cat=='') {
+            alert('Fill in all empty spaces')
+          }else {
+
+            let {status, reason} = qualified;
+            document.getElementById('job_header').innerHTML = `<h3>Your Details are</h3>
+                                                                <hr>
+                                                                <strong>Name: ${name}</strong>
+                                                                <small>IdNo: ${id}</small>
+                                                                <small>Location: ${lc}</small><br>
+                                                                <strong>Available jobs are as follows</strong>
+                                                                <hr>`;
+              document.getElementById('status').innerHTML = `Dear ${name} you ${status} because you ${reason}`;
+            if (cat=='Business') {
+              document.getElementById('job_details').innerHTML = finance;
+            }else if (cat=='Finance') {
+              document.getElementById('job_details').innerHTML = finance;
+            }else if (cat=='Technology') {
+              document.getElementById('job_details').innerHTML = tech;
+            }else if (cat=='Engineering') {
+              document.getElementById('job_details').innerHTML = Engineering;
+            }else {
+              document.getElementById('job_details').innerHTML = `<h1>OOPS looks there is no job offers for you today</h1>`
+            }
+
+          }
+
+          let your_details = new Array(name, id, lc);
+          document.getElementById('your_details_full').innerHTML = `${Array.from(your_details_full)}`;
+
+
+        }
+      </script>
+  </body>
+</html>
