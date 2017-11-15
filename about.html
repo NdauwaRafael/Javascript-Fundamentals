@@ -67,6 +67,8 @@
               <div id="msg_dynamic"></div>
           </div>
 
+          <div id="msg_custom_evt"></div>
+
       </div>
     </div>
 
@@ -124,11 +126,19 @@
       // msg_div.addEventListener("msg", greeting, false);
       //
       // function greeting(e){
-      //   logEvent (
+      //   console.log (
       //     e.myMessg.body
       //   );
       //
       // }
+        var msg_div = document.getElementById('msg_custom_evt');
+        document.addEventListener("hello", function(event) {
+          msg_div.innerHTML='Hallo World, I am a custom event!';
+        });
+
+        let event = new Event("hello", {bubbles: true});
+        msg_custom.dispatchEvent(event);
+
 
       /*======================================================================
           Promises
