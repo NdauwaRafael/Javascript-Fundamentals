@@ -132,9 +132,12 @@
 
           }
 
-          let your_details = new Array(name, id, lc);
-          document.getElementById('your_details_full').innerHTML = `${Array.from(your_details_full)}`;
 
+          function displayDetails(category, ...client) {
+              document.getElementById('your_details_full').innerHTML = client;
+          }
+
+          displayDetails(category, name, id, lc);
 
         }
       </script>
