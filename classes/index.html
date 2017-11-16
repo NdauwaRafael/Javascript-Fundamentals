@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Javascript 2</title>
     <link rel="stylesheet" href="css/app.css">
+    <style>
+      .happy {
+        background: #76ff03 !important;
+      }
+      .sad {
+        background: #ffc400 !important;
+      }
+    </style>
   </head>
   <body>
     <div class="grid-container">
@@ -107,8 +115,9 @@
             <div class="large-6 cell">
               <center><h7>Your Favourite Movies</h7><hr></center>
               <div >
+                <div id="status_add"></div>
                 <table>
-                  <thead>
+                  <thead id="thead" class="noclass">
                     <tr>
                       <th width="200">#</th>
                       <th>Movie Name</th>
@@ -214,15 +223,47 @@
           <td>${ratings}</td>
         </tr>
         `;
+
+        let goodMovie = new Promise(function(resolve, reject) {
+          if (ratings>6) {
+            resolve('Good Movie');
+          }else {
+            reject('Not a so good movie');
+          }
+        });
+
+        goodMovie.then(function(msg){
+          document.getElementById('status_add').innerHTML = `<img src="img/happy_emoji.jpg" width="20%"> ${name} is A ${msg}`;
+          console.log(msg);
+        })
+        .then(function(){
+          document.getElementById('thead').className = 'happy';
+        }).catch(function (error) {
+          document.getElementById('status_add').innerHTML = `<img src="img/crying_emoji.png" width="20%"> ${name} is ${error}`;
+          document.getElementById('thead').className = 'sad';
+          console.log(error);
+        });
+
       }
       // var storedNames = JSON.parse(localStorage.getItem("moviefiles"));
       // document.getElementById('movie_list').innerHTML += `<li>${storedNames}</li>`;
-
+      console.log(storedNames);
     }
 
     load_mov()
 
 
+/*-=------------0==================
+    ES6 M modules
+-=-------------0===================*/
+function top_trends() {
+  import {favourites} from '/js/external.js';
+
+  var top_mvs = favourites();
+  console.log(top_mvs);
+}
+
+top_trends();
     </script>
   </body>
 </html>
