@@ -9,11 +9,10 @@
   </head>
   <body>
     <div class="grid-container">
-      <div class="grid-x">
+      <div class="grid-x ">
 
-        <div class="grid-x">
-          <div class="large-2 cell"></div>
-          <div class="large-8 cell">
+        <div class="grid-x grid-padding-x">
+          <div class="large-7 cell">
             <div class="cell"><!--BANNER-->
               <div class="orbit" role="region" aria-label="Favorite Movies" data-orbit>
                 <div class="orbit-wrapper">
@@ -58,23 +57,26 @@
             </div>
 
           </div>
-          <div class="large-2 cell"></div>
+          <div class="large-5 cell">
+            <center><h7>Top Rated Movies</h7><hr></center>
+          </div>
+
         </div>
         <div class="cell"><!--====================-->
           <div class="grid-x grid-padding-x" ><!--vARIOUS CONTROLS-->
-            <div class="large-4 cell"><!--=====Save a Movie==-->
+            <div class="large-6 cell"><!--=====Save a Movie==-->
             <center><h7>Save a movie in the directory</h7><hr></center>
               <form>
                 <div class="grid-container">
                   <div class="grid-x grid-padding-x">
                     <div class="medium-6 cell">
                       <label>Movie Name
-                        <input type="text" placeholder="Movie Name">
+                        <input type="text" id="name" placeholder="Movie Name">
                       </label>
                     </div>
                     <div class="medium-6 cell">
                       <label>Station Streamed on
-                        <input type="text" placeholder="Satition Streamed on">
+                        <input type="text" id="station" placeholder="Satition Streamed on">
                       </label>
                     </div>
                   </div>
@@ -82,19 +84,19 @@
                   <div class="grid-x grid-padding-x">
                     <div class="medium-6 cell">
                       <label>Year Released
-                        <input type="text" placeholder="Release year">
+                        <input type="text" id="year" placeholder="Release year">
                       </label>
                     </div>
                     <div class="medium-6 cell">
                       <label>Current Ratings
-                        <input type="text" placeholder="Ratings">
+                        <input type="text" id="ratings" placeholder="Ratings">
                       </label>
                     </div>
                   </div>
 
                   <div class="grid-x grid-margin-x">
                     <div class="small-6 large-offset-2 cell">
-                      <button class="hollow button success" >Save Movie Now</button>
+                      <button type="button" class="hollow button success" onclick="saveMovie()">Save Movie Now</button>
                     </div>
                   </div>
 
@@ -102,13 +104,27 @@
               </form>
             </div>
 
-            <div class="large-4 cell">
+            <div class="large-6 cell">
               <center><h7>Your Favourite Movies</h7><hr></center>
+              <div >
+                <table>
+                  <thead>
+                    <tr>
+                      <th width="200">#</th>
+                      <th>Movie Name</th>
+                      <th width="150">Station Brodcasting</th>
+                      <th width="150">Release year</th>
+                      <th width="150">Ratings</th>
+                    </tr>
+                  </thead>
+                  <tbody id="movie_list">
+
+                  </tbody>
+                </table>
+              </div>
             </div>
 
-            <div class="large-4 cell">
-              <center><h7>Top Rated Movies</h7><hr></center>
-            </div>
+
           </div>
       </div>
       </div>
@@ -119,5 +135,94 @@
     <script src="bower_components/what-input/dist/what-input.js"></script>
     <script src="bower_components/foundation-sites/dist/js/foundation.js"></script>
     <script src="js/app.js"></script>
+    <script>
+
+    class Movies {
+      constructor(...movie) {
+        this.movie = movie;
+      }
+
+      saveMv(m_name, m_station, m_year, m_ratings)
+      {
+        this.movie.name = m_name;
+        this.movie.station = m_station;
+        this.movie.year = m_year;
+        this.movie.rating = m_ratings;
+
+        if (JSON.parse(localStorage.getItem("moviefiles")) == null) {
+          var movie_array = [];
+          var newMovie = {
+               "name":        "Favourite Movie",
+               "station":     "Year Published",
+               "year":        "Station Played",
+               "ratings":     "rated"
+           };
+
+           movie_array.push(newMovie);
+           localStorage.setItem("moviefiles", JSON.stringify(movie_array));
+        }else{
+          var stored = JSON.parse(localStorage.getItem("moviefiles"));
+
+          var addedMovie = {
+               "name":        this.movie.name,
+               "station":     this.movie.station,
+               "year":        this.movie.year,
+               "ratings":     this.movie.rating
+           };
+          stored.push(addedMovie);
+          localStorage.setItem("moviefiles", JSON.stringify(stored));
+
+        }
+
+
+      }
+
+      load_movie(){
+        load_mov();
+      }
+
+      }
+
+
+
+    function saveMovie(){
+      var m_name = document.getElementById('name').value;
+      var m_station = document.getElementById('station').value;
+      var m_year = document.getElementById('year').value;
+      var m_ratings = document.getElementById('ratings').value;
+
+      var mov = new Movies();
+      mov.saveMv(m_name,m_station, m_year, m_ratings);
+      mov.load_movie(m_name, m_station, m_year, m_ratings);
+
+    }
+
+    function load_mov() {
+      var storedNames = JSON.parse(localStorage.getItem("moviefiles"));
+      for (var i = 1; i < storedNames.length; i++) {
+        let name = storedNames[i].name;
+        let station = storedNames[i].station;
+        let year = storedNames[i].year;
+        let ratings = storedNames[i].ratings;
+
+        document.getElementById('movie_list').innerHTML += `
+        <tr>
+          <td>${i}</td>
+          <td>${name}</td>
+          <td>${station}</td>
+          <td>${year}</td>
+          <td>${ratings}</td>
+        </tr>
+        `;
+      }
+      // var storedNames = JSON.parse(localStorage.getItem("moviefiles"));
+      // document.getElementById('movie_list').innerHTML += `<li>${storedNames}</li>`;
+
+    }
+
+    load_mov()
+
+
+    </script>
   </body>
 </html>
