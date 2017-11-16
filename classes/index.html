@@ -66,6 +66,9 @@
 
           </div>
           <div class="large-5 cell">
+            <h2 id="timerBanner">
+
+            </h2>
             <center><h7>Top Rated Movies</h7><hr></center>
           </div>
 
@@ -256,14 +259,38 @@
 /*-=------------0==================
     ES6 M modules
 -=-------------0===================*/
-function top_trends() {
-  import {favourites} from '/js/external.js';
+// function top_trends() {
+//   import {favourites} from '/js/external.js';
+//
+//   var top_mvs = favourites();
+//   console.log(top_mvs);
+// }
+//
+// top_trends();
 
-  var top_mvs = favourites();
-  console.log(top_mvs);
+function* tiMer() {
+  var countDownDate = new Date("Dec 5, 2017 15:37:25").getTime();
+  while(true){
+    var distance = countDownDate - now;
+    return distance;
 }
+}
+setInterval(function() {
 
-top_trends();
+var itm = tiMer();
+var timed = itm.next().value;
+
+var days = Math.floor(timed / (1000 * 60 * 60 * 24));
+var hours = Math.floor((timed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((timed % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((timed % (1000 * 60)) / 1000);
+
+document.getElementById("timerBanner").innerHTML = days + "d " + hours + "h "
+ + minutes + "m " + seconds + "s "+" <strong>Until the Realease of STAR WARS: THE LAST JEDI 2017</strong>";
+
+},100)
+
+
     </script>
   </body>
 </html>
