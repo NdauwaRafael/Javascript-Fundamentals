@@ -29,5 +29,4 @@ function favourites(){
 
         return top_movies;
 }
-
-export {favourites};
+export favourites();

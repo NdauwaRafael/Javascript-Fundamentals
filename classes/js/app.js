@@ -1,5 +1,6 @@
 $(document).foundation();
 
+
     class Movies {
       constructor(...movie) {
         this.movie = movie;
@@ -150,7 +151,7 @@ var hours = Math.floor((timed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 var minutes = Math.floor((timed % (1000 * 60 * 60)) / (1000 * 60));
 var seconds = Math.floor((timed % (1000 * 60)) / 1000);
 
-document.getElementById("timerBanner").innerHTML = days + "d " + hours + "h "
- + minutes + "m " + seconds + "s "+" <strong>Until the Realease of STAR WARS: THE LAST JEDI 2017</strong>";
+document.getElementById("timerBanner").innerHTML ='<pan>'+ days + "d " + hours + "h "
+ + minutes + "m " + seconds + "s </span>"+" Until the Realease of <strong>STAR WARS: THE LAST JEDI 2017</strong>";
 
 },100)
